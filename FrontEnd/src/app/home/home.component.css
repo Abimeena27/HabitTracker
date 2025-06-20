@@ -1,0 +1,356 @@
+/* General container for the home page content */
+:host {
+  display: block; /* Keep this if you want the component to take full width */
+  padding: 20px; /* Keep padding if desired */
+  
+}
+
+.home-container {
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between cards */
+  }
+  
+  /* Card Styling (reusable) */
+  .card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    box-sizing: border-box;
+  }
+  
+  /* Notification Banner */
+  .notification-banner {
+    background-color: #e6ffe6; /* Light green */
+    color: #388e3c; /* Darker green text */
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 0; /* No margin-bottom here, `gap` on container handles spacing */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Welcome Card */
+  .welcome-card {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align content to the start */
+    padding-bottom: 15px; /* Adjust padding for buttons */
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-info h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .user-info .date {
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+  }
+  
+  .logo-circle.user-avatar {
+    width: 50px;
+    height: 50px;
+    min-width: 50px; /* Prevent shrinking */
+    min-height: 50px; /* Prevent shrinking */
+    background: linear-gradient(135deg, #a7e08e, #6ccf54);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+  }
+  
+  .plant-logo-small {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .welcome-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  }
+  
+  .weekly-report-button,
+  .sign-out-button {
+    flex: 1; /* Distribute space evenly */
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    gap: 8px; /* Space between icon and text */
+  }
+  
+  .weekly-report-button {
+    background-color: #e8f5e9; /* Light green */
+    color: #4CAF50; /* Green text */
+    border: 1px solid #c8e6c9;
+  }
+  
+  .weekly-report-button:hover {
+    background-color: #dcedc8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .sign-out-button {
+    background-color: #fff;
+    color: #f44336; /* Red text */
+    border: 1px solid #ef9a9a;
+  }
+  
+  .sign-out-button:hover {
+    background-color: #ffebee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .button-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  
+  /* Add New Habit Section */
+  .add-habit-card {
+    margin-top: 0; /* `gap` handles spacing */
+  }
+  
+  .add-habit-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .sparkle-icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .add-habit-header h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .input-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .habit-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .habit-input:focus {
+    border-color: #6ccf54;
+  }
+  
+  .add-button {
+    padding: 12px 20px;
+    background: linear-gradient(to right, #6ccf54, #4CAF50);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-button:hover {
+    background: linear-gradient(to right, #4CAF50, #6ccf54);
+  }
+  
+  /* Today's Habits Section */
+  .today-habits-card {
+    margin-top: 0; /* `gap` handles spacing */
+  }
+  
+  .today-habits-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .today-habits-header h4 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .completion-status {
+    font-size: 15px;
+    color: #888;
+    font-weight: normal;
+    margin-left: 10px;
+  }
+  
+  .habit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .habit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .habit-item:last-child {
+    border-bottom: none;
+  }
+  
+  .habit-details {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allows it to take available space */
+  }
+  
+  .checkbox {
+    width: 24px;
+    height: 24px;
+    min-width: 24px; /* Prevent shrinking */
+    min-height: 24px; /* Prevent shrinking */
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  .checkbox.checked {
+    background-color: #6ccf54; /* Green background when checked */
+    border-color: #6ccf54;
+  }
+  
+  .checkbox.checked::after {
+    content: '✓'; /* Checkmark */
+    color: white;
+    font-size: 18px;
+    line-height: 1;
+  }
+  
+  .habit-item span {
+    font-size: 17px;
+    color: #333;
+  }
+  
+  .habit-item span.completed-text {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .habit-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%; /* Make them circular on hover/active */
+    transition: background-color 0.2s ease;
+  }
+  
+  .icon-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .action-icon {
+    width: 20px;
+    height: 20px;
+    display: block; /* Remove extra space below image */
+  }
+  
+  /* Empty State Section */
+  .empty-state-card {
+    text-align: center;
+    margin-top: 0; /* `gap` handles spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px; /* Ensure it has a good height even when empty */
+  }
+  
+  .large-plant-logo {
+    width: 100px; /* Adjust size as needed */
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .empty-state-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .empty-state-card p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    max-width: 300px; /* Limit text width for readability */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .home-container {
+      padding: 15px;
+    }
+    .card {
+      padding: 20px;
+    }
+    .welcome-actions {
+      flex-direction: column;
+    }
+    .weekly-report-button,
+    .sign-out-button {
+      width: 100%; /* Full width on small screens */
+    }
+    .input-group {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .add-button {
+      width: 100%;
+    }
+  }

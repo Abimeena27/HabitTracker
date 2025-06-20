@@ -1,0 +1,192 @@
+/* --- GLOBAL STYLES (can also go in src/styles.css if truly global) --- */
+html, body { /* Ensure html also takes full height */
+  height: 100%; /* Important for min-height: 100vh to work reliably */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden; /* Prevent scroll if card is tall */
+  box-sizing: border-box; /* Ensures padding/border are included in element's total width/height */
+}
+
+/* --- LOGIN CONTAINER FOR CENTERING THE FLIPPING CARD --- */
+.login-container {
+  /* Make login-container responsible for its own full height and centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh; /* CRUCIAL: Make login-container take full viewport height */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* --- FLIP EFFECT RELATED STYLES (CRUCIAL FOR THE FLIP) --- */
+
+.flip-container {
+  perspective: 1000px; /* Gives the 3D perspective effect */
+  width: 350px; /* Adjusted to match a good card width */
+  max-width: 100%; /* Ensures responsiveness */
+  height: 550px ; /* Height will adjust to content */
+}
+
+.flipper {
+  position: relative; /* CRUCIAL: For absolute positioning of children */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s; /* Smooth transition for the flip */
+  transform-style: preserve-3d; /* CRUCIAL: Essential for 3D transforms */
+}
+
+/* Apply this class to flip the container */
+.flip-container.flipped .flipper {
+  transform: rotateY(180deg);
+}
+
+/* --- CARD STYLING (Applied to both front and back faces) --- */
+.card {
+  position: absolute; /* CRUCIAL: Makes cards overlap */
+  width: 100%;
+  height: 100%; /* CRUCIAL: Makes cards take full height of flipper */
+  backface-visibility: hidden; /* CRUCIAL: Hide the back face when not flipped */
+
+  /* Your provided aesthetic styles for the card: */
+  background-color: #fff;
+  border-radius: 15px; /* Updated radius */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Updated shadow */
+  padding: 40px; /* Updated padding */
+  text-align: center;
+  box-sizing: border-box;
+  display: flex; /* Keep flex for content centering inside card */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically within card */
+}
+
+/* Front card (Login) */
+.front {
+  transform: rotateY(0deg); /* Default state */
+  z-index: 2; /* Ensures it's on top initially */
+}
+
+/* Back card (Sign Up) */
+.back {
+  transform: rotateY(180deg); /* Rotated 180deg to start hidden */
+  z-index: 1; /* Ensures it's behind initially */
+}
+
+/* --- LOGO AND TEXT STYLES (FROM YOUR PROVIDED CSS) --- */
+.logo-circle {
+  width: 80px; /* Your specified width */
+  height: 80px; /* Your specified height */
+  background: linear-gradient(135deg, #a7e08e, #6ccf54); /* Your specified gradient */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 30px; /* Your specified margin */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Your specified shadow */
+}
+
+.plant-logo {
+  width: 50px; /* Your specified width */
+  height: 50px; /* Your specified height */
+}
+
+h2 {
+  font-size: 28px; /* Your specified size */
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px; /* Your specified size */
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  width: 100%; /* Ensure inputs take full width */
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 15px 20px; /* Your specified padding */
+  border: 1px solid #ddd;
+  border-radius: 10px; /* Your specified radius */
+  font-size: 16px; /* Your specified size */
+  color: #333;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #6ccf54; /* Your specified focus color */
+}
+
+.sign-in-button {
+  width: 100%;
+  padding: 15px; /* Your specified padding */
+  background: linear-gradient(to right, #6ccf54, #4CAF50); /* Your specified gradient */
+  color: white;
+  border: none;
+  border-radius: 10px; /* Your specified radius */
+  font-size: 18px; /* Your specified size */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Your specified shadow */
+  margin-top: 10px; /* Keep existing margin */
+}
+
+.sign-in-button:hover {
+  background: linear-gradient(to right, #4CAF50, #6ccf54); /* Your specified hover gradient */
+  transform: translateY(-2px); /* Added hover effect */
+}
+
+.sign-in-button:active {
+  transform: translateY(0); /* Added active effect */
+}
+
+.demo-text {
+  font-size: 14px; /* Your specified size */
+  color: #999;
+  margin-top: 25px; /* Your specified margin */
+}
+
+/* --- ERROR/SUCCESS MESSAGE & TOGGLE LINK STYLES (EXISTING) --- */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9em; /* Adjust for consistency */
+}
+.success-message {
+  color: green;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9em; /* Adjust for consistency */
+}
+.toggle-mode-text {
+  margin-top: 15px;
+  font-size: 0.9em;
+  text-align: center;
+}
+.toggle-mode-text a {
+  color: #007bff; /* Blue for links */
+  cursor: pointer;
+  text-decoration: underline;
+}
+.toggle-mode-text a:hover {
+  text-decoration: none;
+}

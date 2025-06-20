@@ -1,0 +1,70 @@
+<div class="home-container">
+  <div *ngIf="showNewHabitAddedNotification" class="notification-banner">
+    New habit added! 🎉<br>
+    "{{ lastAddedHabitName }}" is now part of your routine.
+  </div>
+
+  <div class="card welcome-card">
+    <div class="user-info">
+      <div class="logo-circle user-avatar">
+        <img src="assets/plant-avatar.png" alt="Plant Avatar" class="plant-logo-small">
+      </div>
+      <div>
+        <h2>Hello, {{ userName }}</h2> <p class="date">{{ currentDate | date:'fullDate' }}</p>
+      </div>
+    </div>
+    <div class="welcome-actions">
+      <button class="weekly-report-button" (click)="goToWeeklyReport()">
+        <img src="assets/chart-icon.png" alt="Chart Icon" class="button-icon"> Weekly Report
+      </button>
+      <button class="sign-out-button" (click)="signOut()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="card add-habit-card">
+    <div class="add-habit-header">
+      <span class="sparkle-icon">✨</span>
+      <h3>Add New Habit</h3>
+    </div>
+    <div class="input-group">
+      <input
+        type="text"
+        placeholder="e.g., Drink 8 glasses of water"
+        [(ngModel)]="newHabitName"
+        (keyup.enter)="addHabit()"
+        class="habit-input"
+      >
+      <button class="add-button" (click)="addHabit()">Add</button>
+    </div>
+  </div>
+
+  <div *ngIf="todayHabits.length > 0" class="card today-habits-card">
+    <div class="today-habits-header">
+      <h4>Today's Habits <span class="completion-status">({{ completedHabitsCount }}/{{ totalHabitsCount }} completed)</span></h4>
+    </div>
+    <ul class="habit-list">
+      <li *ngFor="let habit of todayHabits; let i = index" class="habit-item">
+        <div class="habit-details">
+          <div
+            class="checkbox"
+            [class.checked]="habit.completed"
+            (click)="toggleHabitCompletion(habit)" >
+          </div>
+          <span [class.completed-text]="habit.completed">{{ habit.name }}</span>
+        </div>
+        <div class="habit-actions">
+          <button class="icon-button edit-button" (click)="editHabit(habit)"> <img src="assets/edit-icon.png" alt="Edit" class="action-icon">
+          </button>
+          <button class="icon-button delete-button" (click)="deleteHabit(habit)"> <img src="assets/delete-icon.png" alt="Delete" class="action-icon">
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="todayHabits.length === 0" class="card empty-state-card">
+    <img src="assets/large-plant-logo.png" alt="Large Plant Logo" class="large-plant-logo">
+    <h3>Ready to build your first habit?</h3>
+    <p>Add a habit above to get started on your journey!</p>
+  </div>
+</div>

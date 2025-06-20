@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+  }
+  
+  body {
+    background: linear-gradient(to bottom right, #F8FBF7, #EAF7F5, #E1F0FD);
+    min-height: 100vh;
+    background-attachment: fixed;
+  }
+  
+  app-root {
+    display: block;
+    min-height: 100vh;
+  }

@@ -1,0 +1,57 @@
+<div class="login-container">
+  <div class="flip-container" [class.flipped]="!isLoginMode"> <div class="flipper">
+      <div class="card front">
+        <div class="logo-circle">
+          <img src="assets/plant-logo.png" alt="Plant Logo" class="plant-logo">
+        </div>
+        <h2>Welcome Back</h2>
+        <p>Continue your journey to better habits</p>
+
+        <form (ngSubmit)="signIn()">
+          <div class="form-group">
+            <input type="text" id="username" placeholder="Username" [(ngModel)]="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+          </div>
+
+          <button type="submit" class="sign-in-button">Sign In</button>
+        </form>
+
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+        <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+
+        <p class="toggle-mode-text">
+          Don't have an account? <a (click)="toggleMode()">Sign Up</a>
+        </p>
+
+        <p class="demo-text">Demo: Use any username and password to continue</p>
+      </div>
+
+      <div class="card back">
+        <div class="logo-circle">
+          <img src="assets/plant-logo.png" alt="Plant Logo" class="plant-logo">
+        </div>
+        <h2>Join Us!</h2>
+        <p>Start tracking your habits today</p>
+
+        <form (ngSubmit)="registerUser()"> <div class="form-group">
+            <input type="text" id="signupUsername" placeholder="Username" [(ngModel)]="signupUsername" name="signupUsername" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="signupPassword" placeholder="Password" [(ngModel)]="signupPassword" name="signupPassword" required>
+          </div>
+
+          <button type="submit" class="sign-in-button">Register</button>
+        </form>
+
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+        <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+
+        <p class="toggle-mode-text">
+          Already have an account? <a (click)="toggleMode()">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

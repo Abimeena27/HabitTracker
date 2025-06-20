@@ -1,0 +1,78 @@
+<div class="report-container">
+  <div class="header-section card">
+    <div class="report-title-group">
+      <!-- Ensure this image path is correct and the image exists -->
+      <img src="assets/bar-chart-icon.png" alt="Report Icon" class="report-icon">
+      <h2>Habit Reports</h2>
+    </div>
+    <button class="back-button" (click)="goToDashboard()">← Back to Dashboard</button>
+  </div>
+
+  <div class="select-habit-section card">
+    <label for="habit-select">Select a habit to view:</label>
+    <div class="select-wrapper">
+      <select id="habit-select" [(ngModel)]="selectedHabitId" (change)="onHabitSelectionChange($event)">
+        <option [ngValue]="null" disabled>Select a habit</option>
+        <option *ngFor="let habit of allHabits" [ngValue]="habit.id">
+          {{ habit.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Main report card conditionally displayed only if a habit is selected -->
+  <div class="report-card card" *ngIf="selectedHabit">
+    <div class="report-card-header">
+      <h3>{{ selectedHabit.name }}</h3>
+      <span class="completion-tag" [ngClass]="{'complete': getHabitCompletionPercentage(selectedHabit.id!) > 0, 'incomplete': getHabitCompletionPercentage(selectedHabit.id!) === 0}">
+        {{ getHabitCompletionPercentage(selectedHabit.id!) }}% Complete
+      </span>
+    </div>
+
+    <div class="summary-stats">
+      <div class="stat-box completed-box">
+        <h4>{{ getDaysCompleted(selectedHabit.id!) }}</h4>
+        <p>Days Completed</p>
+      </div>
+      <div class="stat-box missed-box">
+        <h4>{{ getDaysMissed(selectedHabit.id!) }}</h4>
+        <p>Days Missed</p>
+      </div>
+      <div class="stat-box streak-box">
+        <h4>{{ getCurrentStreak(selectedHabit.id!) }}</h4>
+        <p>Current Streak</p>
+      </div>
+    </div>
+
+    <div class="calendar-navigation">
+      <button (click)="navigateMonth(-1)">Previous Month</button>
+      <span>{{ currentMonth | date:'MMMM yyyy' }}</span> <!-- Changed 'MMMM' to 'MMMM yyyy' for full year -->
+      <button (click)="navigateMonth(1)">Next Month</button>
+    </div>
+
+    <div class="calendar-grid">
+      <div class="day-header" *ngFor="let dayName of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">
+        {{ dayName }}
+      </div>
+      <div
+        class="calendar-day"
+        [class.current-month]="day.isCurrentMonth"
+        [class.today]="day.isToday"
+        [class.completed]="selectedHabit && habitCompletedOnDay(selectedHabit.id!, day.fullDate)"
+        [class.missed]="selectedHabit && day.isCurrentMonth && !habitCompletedOnDay(selectedHabit.id!, day.fullDate) && day.date.getTime() < todayDateForComparison.getTime()"
+        *ngFor="let day of calendarDays"
+      >
+        {{ day.dayOfMonth }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Message displayed if no habit is selected or no habits are available -->
+  <div *ngIf="!selectedHabit && allHabits.length === 0" class="no-habit-selected">
+    <p>No habits available. Please add a habit first!</p>
+    <!-- Optional: Add a button to go to a page to add habits -->
+  </div>
+  <div *ngIf="!selectedHabit && allHabits.length > 0" class="no-habit-selected">
+    <p>Please select a habit to view its report from the dropdown above.</p>
+  </div>
+</div>
